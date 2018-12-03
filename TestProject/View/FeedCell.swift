@@ -37,13 +37,19 @@ extension UIView {
 
 final class FeedCell: EntryStreamReusableView<Feed> {
     
-    private let containerView = UIView()
-    private let titleLabel = specify(UILabel()) {
+    let containerView = specify(UIStackView()) {
+        $0.axis  = .vertical
+        $0.distribution  = .equalSpacing
+        $0.alignment = .center
+        $0.spacing   = 16.0
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    let titleLabel = specify(UILabel()) {
         $0.numberOfLines = 0
     }
-    private let descriptionLabel =  specify(UILabel()) {
+    let descriptionLabel =  specify(UILabel()) {
         $0.numberOfLines = 0
-        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
+//        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
     
     override func setup(entry: Feed) {
@@ -55,14 +61,16 @@ final class FeedCell: EntryStreamReusableView<Feed> {
         add(containerView) {
             $0.edges.equalTo(self)
         }
+        containerView.addArrangedSubview(titleLabel)
+        containerView.addArrangedSubview(descriptionLabel)
         
-        containerView.add(descriptionLabel) {
-            $0.leading.trailing.bottom.equalTo(containerView).inset(10)
-        }
+//        containerView.add(descriptionLabel) {
+//            $0.leading.trailing.bottom.equalTo(containerView).inset(10)
+//        }
         
-        containerView.add(titleLabel) {
-            $0.top.leading.trailing.equalTo(containerView).inset(10)
-            $0.bottom.equalTo(descriptionLabel.snp.top).offset(-10)
-        }
+//        containerView.add(titleLabel) {
+//            $0.top.leading.trailing.bottom.equalTo(containerView).inset(10)
+////            $0.bottom.equalTo(descriptionLabel.snp.top).inset(-10)
+//        }
     }
 }

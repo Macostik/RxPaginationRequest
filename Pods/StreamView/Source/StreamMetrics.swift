@@ -88,6 +88,7 @@ public class StreamMetrics<T: StreamReusableView>: StreamMetricsProtocol {
         let view = dequeueView(item: item)
         view.item = item
         UIView.performWithoutAnimation { view.frame = item.frame }
+        print (">>print 🚒\(view)🚒")
         item.view = view
         prepareAppearing?(item, view)
         view.setEntry(entry: item.entry)

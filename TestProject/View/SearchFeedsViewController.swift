@@ -30,10 +30,25 @@ class SearchFeedsViewController: UIViewController {
         streamView.showsHorizontalScrollIndicator = false
         let metrics = StreamMetrics<FeedCell>()
         metrics.modifyItem = { item in
-            item.size = 100
+            let view = metrics.dequeueView(item: item)
+            view.titleLabel.text = (item.entry as? Feed)?.title
+            view.titleLabel.sizeToFit()
+            view.titleLabel.layoutIfNeeded()
+            view.descriptionLabel.text = "one"
+            view.descriptionLabel.sizeToFit()
+            view.descriptionLabel.layoutIfNeeded()
+            view.translatesAutoresizingMaskIntoConstraints = false
+//
+//            view.setNeedsUpdateConstraints()
+//            view.updateConstraintsIfNeeded()
+//            view.setNeedsLayout()
+//            view.layoutIfNeeded()
+//            view.invalidateIntrinsicContentSize()
+            let height = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            item.size = height.height
         }
         dataSource.addMetrics(metrics: metrics)
-        
+       
         viewModel = PaginationViewModel(refresher: bottomRefresher.startRefreshingObservable,
                                         viewWillAppear: rx.viewWillAppear.asDriver(),
                                         scrollViewDidReachBottom:  streamView.rx.reachedBottom.asDriver())

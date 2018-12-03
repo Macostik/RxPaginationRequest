@@ -35,12 +35,12 @@ class PaginationViewModel {
                     return result
                 })
         }
-        
+
         indicatorViewAnimating = loadAction.executing.asDriver(onErrorJustReturn: false)
         elements = loadAction.elements.asDriver(onErrorDriveWith: .empty())
             .scan([]) { $0.count < defaultArticlesCount ? $1 : $0 + $1 }
             .startWith([])
-        
+
         loadError = loadAction.errors.asDriver(onErrorDriveWith: .empty())
             .flatMap { error -> Driver<Error> in
                 switch error {
@@ -55,7 +55,7 @@ class PaginationViewModel {
             .map { _ in 1 }
             .subscribe(loadAction.inputs)
             .disposed(by: disposeBag)
-        
+
         refresher
             .withLatestFrom(loadAction.elements)
             .flatMap { _ in Observable.of(articleCount/defaultArticlesCount + 1) }
