@@ -9,24 +9,57 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import StreamView
 
 class SearchFeedsViewController: UIViewController {
     
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var streamView: StreamView!
     
     private let disposeBag = DisposeBag()
-    private var viewModel: PaginationViewModel<Feed>!
+    private var viewModel: PaginationViewModel!
+    fileprivate lazy var dataSource: StreamDataSource<[Feed]> = {
+        let ds = StreamDataSource<[Feed]>(streamView: self.streamView)
+        return ds
+    }()
+    fileprivate lazy var bottomRefresher = specify(Refresher(scrollView: streamView,
+                                                        position: .bottom), { $0.style = .perple })
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaginationViewModel( viewWillAppear: rx.viewWillAppear.asDriver(),
-                                         scrollViewDidReachBottom:  tableView.rx.reachedBottom.asDriver())
+        streamView.showsHorizontalScrollIndicator = false
+        let metrics = StreamMetrics<FeedCell>()
+        metrics.modifyItem = { item in
+            item.size = 100
+        }
+        dataSource.addMetrics(metrics: metrics)
         
-        viewModel.indicatorViewAnimating.drive(indicatorView.rx.isAnimating).disposed(by: disposeBag)
-        viewModel.elements.drive(tableView.rx.items(cellIdentifier: "Cell", cellType: FeedCell.self)).disposed(by: disposeBag)
-        viewModel.loadError.drive(onNext: { print($0) }).disposed(by: disposeBag)
+        viewModel = PaginationViewModel(refresher: bottomRefresher.startRefreshingObservable,
+                                        viewWillAppear: rx.viewWillAppear.asDriver(),
+                                        scrollViewDidReachBottom:  streamView.rx.reachedBottom.asDriver())
         
+         viewModel.indicatorViewAnimating
+            .asObservable()
+            .subscribe(onNext: { [weak self] isHide in
+                if isHide {
+                    self?.bottomRefresher.completable =
+                        Completable.create(subscribe: { observer in
+                        observer(.completed)
+                        return Disposables.create()
+                    })
+                }
+            }).disposed(by: disposeBag)
+        viewModel.loadError
+            .drive(onNext: { print($0) })
+            .disposed(by: disposeBag)
+        viewModel.elements
+            .asObservable()
+            .subscribe(onNext: { [weak self] in
+                self?.dataSource.items = $0
+            }).disposed(by: disposeBag)
     }
 }
+
+
+
+

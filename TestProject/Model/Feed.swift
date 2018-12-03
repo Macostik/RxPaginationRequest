@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Feed: Decodable {
+struct Feed {
     let title: String
     let created_at: String
     

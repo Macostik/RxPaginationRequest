@@ -1,0 +1,22 @@
+{
+  "name": "StreamView",
+  "version": "1.5.0",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "summary": "Elegant collection view",
+  "homepage": "https://github.com/Macostik/StreamView.git",
+  "social_media_url": "http://twitter.com/StreamView",
+  "authors": {
+    "Macostik": "info@macostik.org"
+  },
+  "source": {
+    "git": "https://github.com/Macostik/StreamView.git",
+    "tag": "1.5.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Source/*.swift"
+}

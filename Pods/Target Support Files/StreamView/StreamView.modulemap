@@ -1,0 +1,6 @@
+framework module StreamView {
+  umbrella header "StreamView-umbrella.h"
+
+  export *
+  module * { export * }
+}

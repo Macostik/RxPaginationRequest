@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,44 +13,25 @@
         <scene sceneID="ejA-JW-5SX">
             <objects>
                 <viewController id="Hh9-iS-IZl" customClass="SearchFeedsViewController" customModule="TestProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B9N-kV-Toe">
+                    <view key="view" contentMode="scaleToFill" id="hQX-nv-nva">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdl-iF-15t" customClass="StreamView" customModule="StreamView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="NOc-9Z-Iri">
-                            <rect key="frame" x="0.0" y="88" width="375" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </activityIndicatorView>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="oDD-Be-ooR" detailTextLabel="kf7-8a-9ie" style="IBUITableViewCellStyleSubtitle" id="MW0-IB-w8B" customClass="FeedCell" customModule="TestProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MW0-IB-w8B" id="nyn-oR-Tpe">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oDD-Be-ooR">
-                                            <rect key="frame" x="16" y="10" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kf7-8a-9ie">
-                                            <rect key="frame" x="16" y="33.5" width="33" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
+                        <constraints>
+                            <constraint firstItem="eaf-PW-9Gi" firstAttribute="bottom" secondItem="gdl-iF-15t" secondAttribute="bottom" id="8a8-zg-5NL"/>
+                            <constraint firstItem="gdl-iF-15t" firstAttribute="top" secondItem="eaf-PW-9Gi" secondAttribute="top" id="E6E-LO-Rau"/>
+                            <constraint firstItem="eaf-PW-9Gi" firstAttribute="trailing" secondItem="gdl-iF-15t" secondAttribute="trailing" id="cs0-4d-pWe"/>
+                            <constraint firstItem="gdl-iF-15t" firstAttribute="leading" secondItem="eaf-PW-9Gi" secondAttribute="leading" id="icA-VF-Xkf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eaf-PW-9Gi"/>
+                    </view>
                     <connections>
-                        <outlet property="indicatorView" destination="NOc-9Z-Iri" id="iTk-9S-flJ"/>
-                        <outlet property="tableView" destination="B9N-kV-Toe" id="NaC-0G-VvY"/>
+                        <outlet property="streamView" destination="gdl-iF-15t" id="JPR-f9-cUI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFi-9d-PLi" userLabel="First Responder" sceneMemberID="firstResponder"/>

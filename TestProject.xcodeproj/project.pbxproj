@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01D65669B85BC713EAF0F8A8 /* Pods_TestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C6832C0B3704583CE03BEBB /* Pods_TestProject.framework */; };
+		4316430221B5159D005EEA1D /* Refresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4316430121B5159D005EEA1D /* Refresher.swift */; };
 		56DDE8A521AAB510004FFF09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DDE8A421AAB510004FFF09 /* AppDelegate.swift */; };
 		56DDE8AA21AAB510004FFF09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DDE8A821AAB510004FFF09 /* Main.storyboard */; };
 		56DDE8AC21AAB512004FFF09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56DDE8AB21AAB512004FFF09 /* Assets.xcassets */; };
@@ -20,12 +21,12 @@
 		56DDE8D021AABF05004FFF09 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DDE8CB21AABF04004FFF09 /* UIViewController+Rx.swift */; };
 		56DDE8D121AABF05004FFF09 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DDE8CC21AABF04004FFF09 /* UITableView+Rx.swift */; };
 		56DDE8D221AABF05004FFF09 /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DDE8CD21AABF04004FFF09 /* UIScrollView+Rx.swift */; };
-		56DDE8D321AABF05004FFF09 /* DisposeBag+Bulk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DDE8CE21AABF05004FFF09 /* DisposeBag+Bulk.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1BF29244802554E00C15C89B /* Pods-TestProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestProject/Pods-TestProject.release.xcconfig"; sourceTree = "<group>"; };
 		1C6832C0B3704583CE03BEBB /* Pods_TestProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4316430121B5159D005EEA1D /* Refresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refresher.swift; sourceTree = "<group>"; };
 		56DDE8A121AAB510004FFF09 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DDE8A421AAB510004FFF09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56DDE8A921AAB510004FFF09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		56DDE8CB21AABF04004FFF09 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		56DDE8CC21AABF04004FFF09 /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
 		56DDE8CD21AABF04004FFF09 /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
-		56DDE8CE21AABF05004FFF09 /* DisposeBag+Bulk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DisposeBag+Bulk.swift"; sourceTree = "<group>"; };
 		65C51FA7078D9BFE4B81FF6C /* Pods-TestProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestProject/Pods-TestProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +94,6 @@
 		56DDE8CA21AABED9004FFF09 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				56DDE8CE21AABF05004FFF09 /* DisposeBag+Bulk.swift */,
 				56DDE8CD21AABF04004FFF09 /* UIScrollView+Rx.swift */,
 				56DDE8CC21AABF04004FFF09 /* UITableView+Rx.swift */,
 				56DDE8CB21AABF04004FFF09 /* UIViewController+Rx.swift */,
@@ -123,6 +122,7 @@
 			children = (
 				56DDE8BF21AAB576004FFF09 /* SearchFeedsViewController.swift */,
 				56DDE8B921AAB560004FFF09 /* FeedCell.swift */,
+				4316430121B5159D005EEA1D /* Refresher.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,6 +257,8 @@
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/StreamView/StreamView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -268,6 +270,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StreamView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,10 +289,10 @@
 				56DDE8BB21AAB560004FFF09 /* APIManager.swift in Sources */,
 				56DDE8BD21AAB561004FFF09 /* FeedCell.swift in Sources */,
 				56DDE8D221AABF05004FFF09 /* UIScrollView+Rx.swift in Sources */,
-				56DDE8D321AABF05004FFF09 /* DisposeBag+Bulk.swift in Sources */,
 				56DDE8A521AAB510004FFF09 /* AppDelegate.swift in Sources */,
 				56DDE8C121AAB576004FFF09 /* PaginationViewModel.swift in Sources */,
 				56DDE8BA21AAB560004FFF09 /* Feed.swift in Sources */,
+				4316430221B5159D005EEA1D /* Refresher.swift in Sources */,
 				56DDE8D121AABF05004FFF09 /* UITableView+Rx.swift in Sources */,
 				56DDE8D021AABF05004FFF09 /* UIViewController+Rx.swift in Sources */,
 				56DDE8C221AAB576004FFF09 /* SearchFeedsViewController.swift in Sources */,

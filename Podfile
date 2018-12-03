@@ -9,5 +9,7 @@ target 'TestProject' do
   pod 'Action'
   pod 'SwiftyJSON'
   pod 'RxAlamofire'
+  pod 'SnapKit'
+  pod 'StreamView', :git => 'https://github.com/Macostik/StreamView.git'
 
 end

@@ -13,7 +13,7 @@ import Action
 import RxAlamofire
 import SwiftyJSON
 
-class PaginationViewModel<Element: Swift.Decodable> {
+class PaginationViewModel {
     let indicatorViewAnimating: Driver<Bool>
     let elements: Driver<[Feed]>
     let loadError: Driver<Error>
@@ -21,7 +21,9 @@ class PaginationViewModel<Element: Swift.Decodable> {
     private let loadAction: Action<Int, [Feed]>
     private let disposeBag = DisposeBag()
     
-    init(viewWillAppear: Driver<Void>, scrollViewDidReachBottom: Driver<Void>) {
+    init(refresher: PublishSubject<Refresher>,
+         viewWillAppear: Driver<Void>,
+         scrollViewDidReachBottom: Driver<Void>) {
         var articleCount = 0
         let defaultArticlesCount = 20
         loadAction = Action { page in
@@ -54,7 +56,7 @@ class PaginationViewModel<Element: Swift.Decodable> {
             .subscribe(loadAction.inputs)
             .disposed(by: disposeBag)
         
-        scrollViewDidReachBottom.asObservable()
+        refresher
             .withLatestFrom(loadAction.elements)
             .flatMap { _ in Observable.of(articleCount/defaultArticlesCount + 1) }
             .subscribe(loadAction.inputs)
